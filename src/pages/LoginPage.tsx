@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -25,10 +24,7 @@ export default function LoginPage() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription>
+        <CardTitle className="flex justify-center ">LOGIN</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <form>
@@ -66,6 +62,15 @@ export default function LoginPage() {
         <Button type="submit" className="w-full" onClick={handleLogin}>
           Login
         </Button>
+        <p className="text-center text-sm text-muted-foreground">
+          Don't have an account?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="font-medium underline"
+          >
+            Register
+          </button>
+        </p>
       </CardFooter>
     </Card>
   );

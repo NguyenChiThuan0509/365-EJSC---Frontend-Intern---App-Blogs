@@ -16,14 +16,14 @@ export default function RegisterPage() {
 
   return (
     <Card className="w-95">
-      <CardHeader>
-        <CardTitle>Register</CardTitle>
+      <CardHeader className="flex justify-center">
+        <CardTitle>REGISTER</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">
         <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" placeholder="Your name" />
+          <Input id="name" placeholder="your name" />
         </div>
 
         <div className="space-y-1">
@@ -33,12 +33,20 @@ export default function RegisterPage() {
 
         <div className="space-y-1">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" />
+          <Input
+            id="password"
+            type="password"
+            placeholder="enter your password"
+          />
         </div>
 
         <div className="space-y-1">
           <Label htmlFor="confirmPassword">Confirm Password</Label>
-          <Input id="confirmPassword" type="password" />
+          <Input
+            id="confirmPassword"
+            type="password"
+            placeholder="enter your password again"
+          />
         </div>
 
         <Button className="w-full" onClick={handleRegister}>
