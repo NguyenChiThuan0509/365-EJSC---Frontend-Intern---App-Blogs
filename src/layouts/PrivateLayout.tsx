@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/NavBar";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import Navbar from "@/components/pages/NavBar";
+import ProtectedRoute from "@/router/ProtectedRoute";
 
 export default function PrivateLayout() {
   return (

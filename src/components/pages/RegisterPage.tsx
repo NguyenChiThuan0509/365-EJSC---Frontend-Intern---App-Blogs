@@ -50,7 +50,7 @@ export default function RegisterPage() {
         </div>
 
         <Button className="w-full" onClick={handleRegister}>
-          Register
+          Sign in
         </Button>
 
         <p className="text-center text-sm text-muted-foreground">

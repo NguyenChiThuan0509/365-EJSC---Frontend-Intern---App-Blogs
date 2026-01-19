@@ -19,7 +19,7 @@ export default function Navbar() {
             </Button>
 
             <Button asChild>
-              <Link to="/register">Register</Link>
+              <Link to="/register">Sign in</Link>
             </Button>
           </>
         )}
@@ -27,14 +27,17 @@ export default function Navbar() {
         {isAuthenticated && (
           <>
             {user?.role === "admin" && (
-              <Button variant="ghost" asChild>
+              <Button variant="outline" asChild>
                 <Link to="/admin">Admin</Link>
               </Button>
             )}
+            {user?.role === "user" && (
+              <Button variant="outline" asChild>
+                <Link to="/admin">User</Link>
+              </Button>
+            )}
 
-            <Button variant="outline" onClick={logout}>
-              Logout
-            </Button>
+            <Button onClick={logout}>Logout</Button>
           </>
         )}
       </div>
