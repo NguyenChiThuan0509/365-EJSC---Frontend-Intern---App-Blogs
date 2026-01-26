@@ -19,7 +19,7 @@ export default function Navbar() {
             </Button>
 
             <Button asChild>
-              <Link to="/register">Sign in</Link>
+              <Link to="/register">Sign up</Link>
             </Button>
           </>
         )}
@@ -28,12 +28,13 @@ export default function Navbar() {
           <>
             {user?.role === "admin" && (
               <Button variant="outline" asChild>
-                <Link to="/admin">Admin</Link>
+                <Link to="/admin/posts">Admin</Link>
               </Button>
             )}
+
             {user?.role === "user" && (
               <Button variant="outline" asChild>
-                <Link to="/admin">User</Link>
+                <Link to="/user">User Name</Link>
               </Button>
             )}
 

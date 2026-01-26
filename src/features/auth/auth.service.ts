@@ -1,52 +1,33 @@
-import type { User } from "@/types/user";
+import { api } from "@/api/api";
+import { mapAuthResponse, type AuthApiResponse } from "./auth.mapper";
 
+/* ---------- LOGIN ---------- */
 export interface LoginPayload {
   email: string;
   password: string;
 }
 
-export interface LoginResponse {
-  user: User;
-  token: string;
-}
-
-const MOCK_USERS: Array<User & { password: string }> = [
-  {
-    id: 1,
-    name: "Admin",
-    email: "admin@gmail.com",
-    password: "123456",
-    role: "admin",
-  },
-  {
-    id: 2,
-    name: "User",
-    email: "user@gmail.com",
-    password: "123456",
-    role: "user",
-  },
-];
-
-export async function loginService(
-  payload: LoginPayload
-): Promise<LoginResponse> {
-
-  await new Promise((resolve) => setTimeout(resolve, 800)); // Mock time-out
-
-  const foundUser = MOCK_USERS.find(
-    (u) =>
-      u.email === payload.email &&
-      u.password === payload.password
+export async function loginService(payload: LoginPayload) {
+  const res = await api.post<AuthApiResponse>(
+    "/api/auth/login",
+    payload
   );
 
-  if (!foundUser) {
-    throw new Error("Email hoặc mật khẩu không đúng");
-  }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { password, ...user } = foundUser;
+  return mapAuthResponse(res.data);
+}
 
-  return {
-    user,
-    token: "fake-jwt-token",
-  };
+/* ---------- REGISTER ---------- */
+export interface RegisterPayload {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export async function registerService(payload: RegisterPayload) {
+  const res = await api.post<AuthApiResponse>(
+    "/api/auth/register",
+    payload
+  );
+
+  return mapAuthResponse(res.data);
 }

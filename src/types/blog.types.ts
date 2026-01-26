@@ -1,8 +1,16 @@
+export type PostStatus = "draft" | "published";
 export interface Blog {
-  id: string;
+  id: number;
   title: string;
-  content: string;
-  author: string;
-  status: string;
+  slug: string;
+  content?: string;
+  excerpt?: string;
+  status: PostStatus;
+  published: boolean;
   createdAt: string;
+  updatedAt: string;
+  author?: {
+    id: number;
+    name: string;
+  };
 }

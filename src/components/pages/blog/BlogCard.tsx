@@ -1,23 +1,43 @@
+import { Link } from "react-router-dom";
 import type { Blog } from "@/types/blog.types";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-interface Props {
+interface BlogCardProps {
   blog: Blog;
-  canEdit?: boolean;
-  canDelete?: boolean;
 }
 
-export default function BlogCard({ blog }: Props) {
+export default function BlogCard({ blog }: BlogCardProps) {
+  const plainContent =
+    blog.excerpt ?? blog.content?.replace(/<[^>]+>/g, "").slice(0, 150);
+
   return (
-    <div className="rounded-lg border bg-white p-4 space-y-2">
-      <h3 className="text-lg font-semibold">{blog.title}</h3>
+    <Card className="transition hover:shadow-md">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg leading-snug line-clamp-2">
+          <Link to={`/blogs/${blog.slug}`} className="hover:underline">
+            {blog.title}
+          </Link>
+        </CardTitle>
 
-      <p className="text-sm text-muted-foreground line-clamp-2">
-        {blog.content}
-      </p>
+        <CardDescription className="text-xs text-muted-foreground">
+          By {blog.author?.name ?? "Unknown"}
+          {blog.createdAt && (
+            <> • {new Date(blog.createdAt).toLocaleDateString()}</>
+          )}
+        </CardDescription>
+      </CardHeader>
 
-      <div className="text-xs text-muted-foreground">
-        By {blog.author} • {new Date(blog.createdAt).toLocaleDateString()}
-      </div>
-    </div>
+      <CardContent className="pt-0">
+        <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+          {plainContent ? `${plainContent}...` : "Không có nội dung"}
+        </p>
+      </CardContent>
+    </Card>
   );
 }
