@@ -17,7 +17,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
     blog.excerpt ?? blog.content?.replace(/<[^>]+>/g, "").slice(0, 150);
 
   return (
-    <Card className="transition hover:shadow-md">
+    <Card className="transition hover:shadow-md mt-5 mb-5">
       <CardHeader className="pb-3">
         <CardTitle className="text-lg leading-snug line-clamp-2">
           <Link to={`/blogs/${blog.slug}`} className="hover:underline">
